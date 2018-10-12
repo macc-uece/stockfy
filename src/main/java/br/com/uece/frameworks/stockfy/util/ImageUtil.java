@@ -1,14 +1,12 @@
 package br.com.uece.frameworks.stockfy.util;
 
 import br.com.uece.frameworks.stockfy.model.Imagem;
-import org.apache.commons.io.IOUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * Create by Bruno Barbosa - 11/10/2018

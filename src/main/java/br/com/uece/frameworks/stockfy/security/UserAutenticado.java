@@ -17,6 +17,8 @@ import java.util.Collection;
 @EqualsAndHashCode(callSuper = false)
 public class UserAutenticado extends User {
 
+    private static final long serialVersionUID = -8460128448727946964L;
+
     private String nome;
     private String cargo;
     private Long imagem;

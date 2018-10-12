@@ -30,12 +30,12 @@ public class ObjectHttpMessageConverter implements HttpMessageConverter<Object> 
             = (Class<? extends MultiValueMap<String, ?>>) LINKED_MULTI_VALUE_MAP.getClass();
 
     @Override
-    public boolean canRead(Class clazz, MediaType mediaType) {
+    public boolean canRead(Class<?> clazz, MediaType mediaType) {
         return objectMapper.canSerialize(clazz) && formHttpMessageConverter.canRead(MultiValueMap.class, mediaType);
     }
 
     @Override
-    public boolean canWrite(Class clazz, MediaType mediaType) {
+    public boolean canWrite(Class<?> clazz, MediaType mediaType) {
         return false;
     }
 
@@ -45,7 +45,7 @@ public class ObjectHttpMessageConverter implements HttpMessageConverter<Object> 
     }
 
     @Override
-    public Object read(Class clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+    public Object read(Class<?> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
         Map<String, String> input = formHttpMessageConverter.read(LINKED_MULTI_VALUE_MAP_CLASS, inputMessage).toSingleValueMap();
         return objectMapper.convertValue(input, clazz);
     }

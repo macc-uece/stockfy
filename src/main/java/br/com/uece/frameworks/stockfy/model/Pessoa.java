@@ -5,10 +5,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+
 import java.util.Calendar;
 import java.util.Set;
 
@@ -40,6 +41,7 @@ public class Pessoa extends BaseEntity<Long> {
     private Set<String> fones;
 
     @Column
+    @Email
     private String email;
 
     @Column

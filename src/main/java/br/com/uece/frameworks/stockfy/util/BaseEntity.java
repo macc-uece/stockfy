@@ -1,6 +1,5 @@
 package br.com.uece.frameworks.stockfy.util;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
