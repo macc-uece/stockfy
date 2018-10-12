@@ -21,8 +21,8 @@ public class ImageUtil {
 
     public static byte[] getImage(Imagem imagem) {
         try {
-            return IOUtils.toByteArray(imagem.getImage().getBinaryStream());
-        } catch (IOException | SQLException e) {
+            return imagem.getImage();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
