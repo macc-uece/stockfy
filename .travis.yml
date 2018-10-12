@@ -2,4 +2,4 @@ language: java
 jdk: oraclejdk8
 
 script:
-- ./mvnw clean install
+- ./mvnw clean spring-boot:run -P tomcat
