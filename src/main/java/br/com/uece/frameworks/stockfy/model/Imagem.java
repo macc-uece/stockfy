@@ -5,13 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
-import java.sql.Blob;
 import java.util.Calendar;
 
 /**
@@ -29,9 +27,8 @@ public class Imagem extends BaseEntity<Long> {
     private String nome;
 
     @Lob
-    @Type(type = "org.hibernate.type.BlobType")
     @JsonIgnore
-    private Blob image;
+    private byte[]  image;
 
     @Column
     private String extensao;

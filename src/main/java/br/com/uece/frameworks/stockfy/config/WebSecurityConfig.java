@@ -22,12 +22,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    @Order(0)
-    protected PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     private final UsuarioAuthenticationProvider usuarioAuthenticationProvider;
 
     private final AcessoNegado acessoNegado;
