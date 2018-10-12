@@ -9,4 +9,4 @@ before_script:
 services:
   - postgresql
 script:
-- ./mvnw clean spring-boot:run -P tomcat
+- ./mvnw clean install -P tomcat
