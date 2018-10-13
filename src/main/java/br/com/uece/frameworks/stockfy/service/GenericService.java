@@ -9,23 +9,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * GenericService
  */
-@Service
-public class GenericService<Entity extends BaseEntity<Long>> {
-
-    private final JpaRepository<Entity, Long> repository;
+public abstract class GenericService<Entity extends BaseEntity<Long>> {
 
     @Autowired
-    public GenericService(JpaRepository<Entity, Long> repository) {
-        this.repository = repository;
-    }
+    protected JpaRepository<Entity, Long> repository;
 
     public Entity find(Long id) {
         Optional<Entity> object = repository.findById(id);
