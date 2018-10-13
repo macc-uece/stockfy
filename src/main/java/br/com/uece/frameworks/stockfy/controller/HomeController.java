@@ -21,11 +21,21 @@ public class HomeController {
 
     @RequestMapping("/403")
     public String erro403() {
-        return "/error/page_403";
+        return "/error/403";
+    }
+
+    @RequestMapping("/400")
+    public String erro400() {
+        return "/error/400";
+    }
+
+    @RequestMapping("/404")
+    public String erro404() {
+        return "/error/404";
     }
 
     @RequestMapping("/500")
     public String erro500() {
-        return "/error/page_500";
+        return "/error/500";
     }
 }

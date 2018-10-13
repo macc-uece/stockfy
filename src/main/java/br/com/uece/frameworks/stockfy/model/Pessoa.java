@@ -5,13 +5,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-
-import java.util.Calendar;
-import java.util.Set;
+import javax.validation.constraints.Pattern;
 
 /**
  * Create by Bruno Barbosa - 11/10/2018
@@ -28,26 +25,28 @@ public class Pessoa extends BaseEntity<Long> {
     @Column
     private String nome;
 
-    @Column
-    private String cnpj;
-
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Endereco endereco;
-
-    @ElementCollection
-    @CollectionTable(name="pessoa_fones", joinColumns=@JoinColumn(name="pessoa_id"))
-    @Column(name="fone")
-    private Set<String> fones;
 
     @Column
     @Email
     private String email;
 
-    @Column
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Calendar dataCriacao;
+    /*
+     * Expressao regular para validar telefones e celulares do Brasil, com ou sem DDD
+     * https://gist.github.com/boliveirasilva/c927811ff4a7d43a0e0c
+     */
+    @Pattern(regexp = "^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})-?(\\d{4}))$")
+    private String telefone1;
+    @Pattern(regexp = "^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})-?(\\d{4}))$")
+    private String telefone2;
 
     public Pessoa() {
+    }
+
+    public Pessoa(String nome, @Email String email) {
+        this.nome = nome;
+        this.email = email;
     }
 }
