@@ -14,11 +14,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <ul class="nav navbar-nav d-md-down-none">
-
+            <li class="nav-item px-3">
+                <span sec:authentication="principal.nome"></span>
+            </li>
+            <li class="nav-item px-3">
+                <span sec:authentication="principal.cargo"></span>
+            </li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <div th:if="${#authentication.principal.imagem} != null">
                         <img th:src="@{'/api/imagem/'+${#authentication.principal.imagem}}" alt="" class="img-avatar"/>
                     </div>

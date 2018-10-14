@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
 <head>
 </head>
 <body>
-<section layout:fragment="content">
-    <p>Home Container</p>
-</section>
+<div layout:fragment="content">
+    <main class="main">
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">Cabeçalho <strong>Test</strong></div>
+                    <div class="card-body">
+                        <!--Conteudo-->
+                        <p>Testando corpo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>
