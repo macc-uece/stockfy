@@ -31,11 +31,6 @@ public class Usuario extends BaseEntity<Long> {
     @JsonIgnore
     private String senha;
 
-    @Column
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    @JsonIgnore
-    private Calendar dataCriacao;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "permissao_id"))
     private Set<Permissao> permissoes;
