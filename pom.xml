@@ -24,8 +24,9 @@
         <java.version>1.8</java.version>
         <!-- Webjars dependencies -->
         <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
-        <webjars-bootstrap.version>4.1.0</webjars-bootstrap.version>
+        <webjars-bootstrap.version>4.1.3</webjars-bootstrap.version>
         <webjars-popperjs.version>1.12.9-1</webjars-popperjs.version>
+        <webjars-locator.version>0.34</webjars-locator.version>
     </properties>
 
     <dependencies>
@@ -86,6 +87,16 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>${webjars-bootstrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootswatch-flatly</artifactId>
+            <version>${webjars-bootstrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
+            <version>${webjars-locator.version}</version>
         </dependency>
 
         <!--Servlet-->
