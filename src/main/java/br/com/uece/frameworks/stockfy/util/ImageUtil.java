@@ -13,10 +13,6 @@ import java.io.IOException;
  */
 public class ImageUtil {
 
-    /*
-     * Para salvar como Blob usar: BlobProxy.generateProxy(ImageUtil.getImage(...))
-     * */
-
     public static byte[] getImage(Imagem imagem) {
         try {
             return imagem.getImage();
