@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,24 +21,18 @@ public abstract class GenericService<Entity extends BaseEntity<Long>> {
     @Autowired
     protected JpaRepository<Entity, Long> repository;
 
-    public Entity find(Long id) {
+    public Entity findById(Long id) {
         Optional<Entity> object = repository.findById(id);
         return object.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id));
     }
 
-    public Entity insert(Entity entity) {
-        entity.setId(null); // Always save insted update
+    public Entity save(Entity entity) {
         return repository.save(entity);
     }
 
-    public Entity update(Entity entity) {
-        find(entity.getId()); // Throw ObjectNotFound In case the object does not exist
-        return repository.save(entity);
-    }
-
-    public void delete(Long id) {
-        find(id);
+    public void deleteById(Long id) {
+        findById(id);
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException e) {

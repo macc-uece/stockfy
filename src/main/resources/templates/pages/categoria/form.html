@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/admin/categorias}">Categorias</a>
+            </li>
+            <li class="breadcrumb-item active">Formulário</li>
+
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="#">
+                        <i class="icon-speech"></i>
+                    </a>
+                    <a class="btn" th:href="@{/home}">
+                        <i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    <a class="btn" href="#">
+                        <i class="icon-settings"></i> &nbsp;Settings</a>
+                </div>
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Basic Form</strong> Categorias</div>
+                    <div class="card-body">
+                        <!--/*@thymesVar id="categoria" type="br.com.uece.frameworks.stockfy.model.Categoria"*/-->
+                        <form class="form-horizontal" th:object="${categoria}" method="post">
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Nome</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" placeholder="nome" th:field="*{nome}">
+                                    <span class="help-block">Digite um nome para categoria</span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary" type="submit">
+                                    <i class="fa fa-dot-circle-o"></i> Submit</button>
+                                <button class="btn btn-sm btn-danger" type="reset">
+                                    <i class="fa fa-ban"></i> Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
