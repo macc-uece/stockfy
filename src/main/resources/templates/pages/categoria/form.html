@@ -21,9 +21,9 @@
                         <i class="icon-speech"></i>
                     </a>
                     <a class="btn" th:href="@{/home}">
-                        <i class="icon-graph"></i> &nbsp;Dashboard</a>
+                        <i class="icon-graph"></i> &nbsp;Painel de Controle</a>
                     <a class="btn" href="#">
-                        <i class="icon-settings"></i> &nbsp;Settings</a>
+                        <i class="icon-settings"></i> &nbsp;Configurações</a>
                 </div>
             </li>
         </ol>
@@ -38,15 +38,14 @@
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label">Nome</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text" placeholder="nome" th:field="*{nome}">
-                                    <span class="help-block">Digite um nome para categoria</span>
+                                    <input class="form-control" type="text" placeholder="Digite um nome para categoria" th:field="*{nome}">
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-sm btn-primary" type="submit">
-                                    <i class="fa fa-dot-circle-o"></i> Submit</button>
+                                    <i class="fa fa-dot-circle-o"></i> Submeter</button>
                                 <button class="btn btn-sm btn-danger" type="reset">
-                                    <i class="fa fa-ban"></i> Reset</button>
+                                    <i class="fa fa-ban"></i> Resetar</button>
                             </div>
                         </form>
                     </div>
