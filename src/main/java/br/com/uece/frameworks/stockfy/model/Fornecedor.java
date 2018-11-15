@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -19,6 +21,6 @@ public class Fornecedor extends Pessoa {
 
     private static final long serialVersionUID = -1868298993542817252L;
 
-    @CNPJ
+    //@CNPJ
     private String cnpj;
 }

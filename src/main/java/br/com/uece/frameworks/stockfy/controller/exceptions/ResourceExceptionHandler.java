@@ -44,6 +44,6 @@ public class ResourceExceptionHandler {
         logger.error("Exception during execution application", throwable);
         String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
-        return new ModelAndView("/500", "Error500", model);
+        return new ModelAndView("/error/500", "Error500", model);
     }
 }
