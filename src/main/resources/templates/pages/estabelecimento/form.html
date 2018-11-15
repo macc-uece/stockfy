@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+<head></head>
+<body>
+<div layout:fragment="content">
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/admin/estabelecimentos}">Estabelecimentos</a>
+            </li>
+            <li class="breadcrumb-item active">Formulário</li>
+
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="#">
+                        <i class="icon-speech"></i>
+                    </a>
+                    <a class="btn" th:href="@{/home}">
+                        <i class="icon-graph"></i> &nbsp;Painel de Controle</a>
+                    <a class="btn" href="#">
+                        <i class="icon-settings"></i> &nbsp;Configurações</a>
+                </div>
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Basic Form</strong> Estabelecimentos</div>
+                    <div class="card-body">
+                        <form class="form-group form-horizontal input_mask" th:action="@{/admin/estabelecimentos/new}" th:object="${estabelecimento}" method="post">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="col-md-2 col-form-label">Nome</div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" placeholder="Digite um nome para o estabelecimento" th:field="*{nome}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="col-md-2 col-form-label">CNPJ</div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" data-inputmask="'mask': '99.999.999/9999-99'" th:field="*{cnpj}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:include="pages/endereco :: endereco"></div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary" type="submit">
+                                    <i class="fa fa-dot-circle-o"></i> Submeter</button>
+                                <button class="btn btn-sm btn-danger" type="reset">
+                                    <i class="fa fa-ban"></i> Resetar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
