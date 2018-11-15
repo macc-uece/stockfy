@@ -11,35 +11,42 @@
             <div class="row">
                 <div class="form-group col-md-4 col-sm-4 col-xs-12">
                     <label>Cep:</label>
-                    <input type="text" class="form-control" th:field="*{endereco.cep}" id="cep" placeholder="Cep" data-inputmask="'mask': '99999-999'"/>
+                    <input type="text" class="form-control" th:field="*{endereco.cep}" id="cep" placeholder="CEP"/>
+                    <p class="text-danger mb-2" th:errors="*{endereco.cep}"></p>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-8 col-sm-8 col-xs-12">
                     <label>Logradouro:</label>
                     <input type="text" class="form-control" th:field="*{endereco.logradouro}" id="logradouro" placeholder="Logradouro"/>
+                    <p class="text-danger mb-2" th:errors="*{endereco.logradouro}"></p>
                 </div>
                 <div class="form-group col-md-2 col-sm-2 col-xs-12">
                     <label>Número:</label>
-                    <input type="number" class="form-control" th:field="*{endereco.numero}" id="numero" placeholder="Nº"/>
+                    <input type="number" class="form-control" th:field="*{endereco.numero}" id="numero" placeholder="Nº" min="0"/>
+                    <p class="text-danger mb-2" th:errors="*{endereco.numero}"></p>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                     <label>Localidade:</label>
                     <input type="text" class="form-control" th:field="*{endereco.localidade}" id="localidade" placeholder="Localidade"/>
+                    <p class="text-danger mb-2" th:errors="*{endereco.localidade}"></p>
                 </div>
                 <div class="form-group col-md-4 col-sm-4 col-xs-12">
                     <label>Bairro:</label>
                     <input  type="text" class="form-control" th:field="*{endereco.bairro}" id="bairro" placeholder="Bairro"/>
+                    <p class="text-danger mb-2" th:errors="*{endereco.bairro}"></p>
                 </div>
                 <div class="form-group col-md-1 col-sm-1 col-xs-12">
                     <label>UF:</label>
                     <input type="text" class="form-control" th:field="*{endereco.uf}" id="uf" placeholder="UF"/>
+                    <p class="text-danger mb-2" th:errors="*{endereco.uf}"></p>
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
                     <label>Complemento:</label>
                     <input type="text" class="form-control" th:field="*{endereco.complemento}" id="complemento" placeholder="Complemento"/>
+                    <p class="text-danger mb-2" th:errors="*{endereco.complemento}"></p>
                 </div>
             </div>
         </div>

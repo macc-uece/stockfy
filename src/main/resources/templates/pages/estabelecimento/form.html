@@ -32,19 +32,21 @@
                     <div class="card-header">
                         <strong>Basic Form</strong> Estabelecimentos</div>
                     <div class="card-body">
-                        <form class="form-group form-horizontal input_mask" th:action="@{/admin/estabelecimentos/new}" th:object="${estabelecimento}" method="post">
+                        <form class="form-group form-horizontal input_mask" th:action="@{/admin/estabelecimentos/new}" th:object="${entity}" method="post">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="col-md-2 col-form-label">Nome</div>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" placeholder="Digite um nome para o estabelecimento" th:field="*{nome}" />
+                                            <input class="form-control" type="text" placeholder="Nome" th:field="*{nome}" />
+                                            <p class="text-danger mb-2" th:errors="*{nome}"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="col-md-2 col-form-label">CNPJ</div>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" data-inputmask="'mask': '99.999.999/9999-99'" th:field="*{cnpj}" />
+                                            <input class="form-control" type="text" th:field="*{cnpj}" />
+                                            <p class="text-danger mb-2" th:errors="*{cnpj}"></p>
                                         </div>
                                     </div>
                                 </div>
