@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/admin/fornecedores}">Fornecedores</a>
+            </li>
+            <li class="breadcrumb-item active">Informações</li>
+
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="#">
+                        <i class="icon-speech"></i>
+                    </a>
+                    <a class="btn" th:href="@{/home}">
+                        <i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    <a class="btn" href="#">
+                        <i class="icon-settings"></i> &nbsp;Settings</a>
+                </div>
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Basic Form</strong> Fornecedores
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-responsive-sm table-striped" th:object="${entity}">
+                            <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Fornecedor"*/-->
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CNPJ</th>
+                                <th>E-mail</th>
+                                <th>Telefones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td th:text="*{nome}"></td>
+                                <td th:text="*{cnpj}"></td>
+                                <td th:text="*{email}"></td>
+                                <td th:text="*{telefone1 + ', ' + telefone2}"></td>
+                                
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Fornecedor"*/-->
+                        <a th:href="@{/admin/fornecedores/{id}/edit(id=${entity.id})}" class="btn btn-primary">Edit
+                            Fornecedore</a>
+                        <a th:href="@{/admin/fornecedores}" class="btn btn-primary">List all</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

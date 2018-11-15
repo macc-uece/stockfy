@@ -11,9 +11,9 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Home</li>
             <!--<li class="breadcrumb-item">-->
-                <!--<a th:href="@{/home}">Admin</a>-->
+            <!--<a th:href="@{/home}">Admin</a>-->
             <!--</li>-->
-            <li class="breadcrumb-item active">Categorias</li>
+            <li class="breadcrumb-item active">Fornecedores</li>
 
             <li class="breadcrumb-menu d-md-down-none">
                 <div class="btn-group" role="group" aria-label="Button group">
@@ -21,9 +21,9 @@
                         <i class="icon-speech"></i>
                     </a>
                     <a class="btn" th:href="@{/home}">
-                        <i class="icon-graph"></i> &nbsp;Painel de Controle</a>
+                        <i class="icon-graph"></i> &nbsp;Dashboard</a>
                     <a class="btn" href="#">
-                        <i class="icon-settings"></i> &nbsp;Configurações</a>
+                        <i class="icon-settings"></i> &nbsp;Settings</a>
                 </div>
             </li>
         </ol>
@@ -31,42 +31,48 @@
             <div class="animated fadeIn">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Categorias
+                        <i class="fa fa-align-justify"></i> Fornecedores
                         <span class="float-right">
-                            <a class="btn btn-outline-primary" th:href="@{/admin/categorias/new}">
-                                <span class="d-none d-md-block">Nova Categoria</span><i class="fa fa-plus d-lg-none d-xl-none"></i>
+                            <a class="btn btn-outline-primary" th:href="@{/admin/fornecedores/new}">
+                                <span class="d-none d-md-block">Novo Fornecedor</span><i class="fa fa-plus d-lg-none d-xl-none"></i>
                             </a>
                         </span>
                     </div>
                     <div class="card-body">
-                        <!--/*@thymesVar id="categorias" type="java.util.List"*/-->
-                        <div th:if="${#lists.isEmpty(categorias)}">
+                        <!--/*@thymesVar id="entities" type="java.util.List"*/-->
+                        <div th:if="${#lists.isEmpty(entities)}">
                             <p>Nenhum registro encontrado.</p>
                             <hr>
                         </div>
-                        <div th:if="${!#lists.isEmpty(categorias)}">
+                        <div th:if="${!#lists.isEmpty(entities)}">
                             <div class="table-responsive">
                                 <table class="table table-responsive-sm table-striped">
                                     <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Nome</th>
+                                        <th>CNPJ</th>
+                                        <th>E-mail</th>
+                                        <th>Telefones</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <!--/*@thymesVar id="categorias" type="java.util.List"*/-->
-                                    <tr th:each="categoria : ${categorias}">
-                                        <!--/*@thymesVar id="categoria" type="br.com.uece.frameworks.stockfy.model.Categoria"*/-->
-                                        <td th:text="${categoria.id}">Id</td>
-                                        <td th:text="${categoria.nome}">Nome</td>
+                                    <!--/*@thymesVar id="entities" type="java.util.List"*/-->
+                                    <tr th:each="entity : ${entities}">
+                                        <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Fornecedor"*/-->
+                                        <td th:text="${entity.id}">Id</td>
+                                        <td th:text="${entity.nome}">Nome</td>
+                                        <td th:text="${entity.cnpj}">CNPJ</td>
+                                        <td th:text="${entity.email}">E-mail</td>
+                                        <td th:text="${entity.telefone1} + ', ' +  ${entity.telefone2}"></td>
                                         <td>
-                                    <span class="float-right text-nowrap">
-                                        <a th:href="@{/admin/categorias/{id}/edit(id=${categoria.id})}" class="btn btn-sm btn-outline-info">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                                        <a th:href="@{/admin/categorias/{id}/delete(id=${categoria.id})}" class="btn btn-sm btn-outline-danger">
-                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
-                                    </span>
+                                            <span class="float-right text-nowrap">
+                                                <a th:href="@{/admin/fornecedores/{id}/edit(id=${entity.id})}" class="btn btn-sm btn-outline-info">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                                <a th:href="@{/admin/fornecedores/{id}/delete(id=${entity.id})}" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+                                            </span>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -74,7 +80,7 @@
                             </div>
                             <ul class="pagination">
                                 <li class="page-item">
-                                    <a class="page-link" href="#">Anterior</a>
+                                    <a class="page-link" href="#">Prev</a>
                                 </li>
                                 <li class="page-item active">
                                     <a class="page-link" href="#">1</a>
@@ -89,7 +95,7 @@
                                     <a class="page-link" href="#">4</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" href="#">Próximo</a>
+                                    <a class="page-link" href="#">Next</a>
                                 </li>
                             </ul>
                         </div>
