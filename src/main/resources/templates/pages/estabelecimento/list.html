@@ -29,17 +29,18 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Estabelecimentos
                         <span class="float-right">
-                            <a class="btn btn-outline-primary" th:href="@{/admin/estabelecimentos/new}">
-                                <span class="d-none d-md-block">Novo Estabelecimento</span><i class="fa fa-plus d-lg-none d-xl-none"></i>
+                            <a class="btn btn-outline-primary" th:href="@{/admin/entities/new}">
+                                <span class="d-none d-md-block">Novo Estabelecimento</span><i
+                                    class="fa fa-plus d-lg-none d-xl-none"></i>
                             </a>
                         </span>
                     </div>
                     <div class="card-body">
-                        <div th:if="${#lists.isEmpty(estabelecimentos)}">
+                        <div th:if="${#lists.isEmpty(entities)}">
                             <p>Nenhum registro encontrado.</p>
                             <hr>
                         </div>
-                        <div th:if="${!#lists.isEmpty(estabelecimentos)}">
+                        <div th:if="${!#lists.isEmpty(entities)}">
                             <div class="table-responsive">
                                 <table class="table table-responsive-sm table-striped">
                                     <thead>
@@ -47,18 +48,21 @@
                                         <th>#</th>
                                         <th>Nome</th>
                                         <th>CNPJ</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="estabelecimento : ${estabelecimentos}">
+                                    <tr th:each="estabelecimento : ${entities}">
                                         <td th:text="${estabelecimento.id}">Id</td>
                                         <td th:text="${estabelecimento.nome}">Nome</td>
                                         <td th:text="${estabelecimento.cnpj}">CNPJ</td>
                                         <td>
                                     <span class="float-right text-nowrap">
-                                        <a th:href="@{/admin/estabelecimentos/{id}/edit(id=${estabelecimento.id})}" class="btn btn-sm btn-outline-info">
+                                        <a th:href="@{/admin/entities/{id}/edit(id=${estabelecimento.id})}"
+                                           class="btn btn-sm btn-outline-info">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                                        <a th:href="@{/admin/estabelecimentos/{id}/delete(id=${estabelecimento.id})}" class="btn btn-sm btn-outline-danger">
+                                        <a th:href="@{/admin/entities/{id}/delete(id=${estabelecimento.id})}"
+                                           class="btn btn-sm btn-outline-danger">
                                             <i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>
                                     </span>
                                         </td>

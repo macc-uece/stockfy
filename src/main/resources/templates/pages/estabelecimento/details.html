@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div th:include="pages/endereco :: endereco" />
-                            <a th:href="@{/admin/estabelecimentos/{id}/edit(id=${estabelecimento.id})}" class="btn btn-primary">Editar
+                            <a th:href="@{/admin/estabelecimentos/{id}/edit(id=${entity.id})}" class="btn btn-primary">Editar
                                 Estabelecimento</a>
                             <a th:href="@{/admin/estabelecimentos}" class="btn btn-primary">Listar Todos</a>
                         </form>
