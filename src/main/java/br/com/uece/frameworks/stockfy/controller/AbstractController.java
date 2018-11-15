@@ -41,11 +41,12 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     public String initCreationForm(ModelMap modelMap) {
         Entity entity = getEntity();
         modelMap.put("entity", entity);
+//        modelMap.put(entity.getClass().getSimpleName().toLowerCase(), entity);
         return VIEWS_BASE_PATH + "/form";
     }
 
     @PostMapping(value = "/new")
-    public String processCreationForm(@ModelAttribute @Valid Entity entity, ModelMap model, BindingResult result) {
+    public String processCreationForm(@ModelAttribute("entity") @Valid Entity entity, BindingResult result, ModelMap model) {
         LOGGER.debug("Received request to create the {}", entity);
         if (result.hasErrors()){
             LOGGER.debug("Validation errors occurred in the process to create the entity {}", result.getAllErrors());

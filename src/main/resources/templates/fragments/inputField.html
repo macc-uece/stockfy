@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--Based on: -->
+<!--@link https://github.com/spring-projects/spring-petclinic/blob/master/src/main/resources/templates/fragments/inputField.html-->
+<body>
+<form>
+    <th:block th:fragment="input (label, name, placeholder, type)">
+        <div class="form-horizontal row py-2">
+            <label class="col-md-2 col-form-label" th:text="${label}">Label</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text"
+                       th:field="*{__${name}__}"
+                       th:type="${type}"
+                       th:placeholder="${placeholder}">
+                <!--Validation error-->
+                <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
+            </div>
+        </div>
+    </th:block>
+</form>
+</body>
+</html>

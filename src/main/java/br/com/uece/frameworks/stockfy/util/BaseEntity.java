@@ -24,7 +24,7 @@ import java.time.Instant;
 public class BaseEntity <PK extends Serializable> implements Serializable, Persistable<PK> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private PK id;
 

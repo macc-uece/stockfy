@@ -23,14 +23,13 @@ public class Pessoa extends BaseEntity<Long> {
 
     private static final long serialVersionUID = -6838989188762945586L;
 
-    @Column
+    @NotBlank
     private String nome;
 
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Endereco endereco;
 
-    @Column
     @Email
     private String email;
 
@@ -39,16 +38,18 @@ public class Pessoa extends BaseEntity<Long> {
      * https://gist.github.com/boliveirasilva/c927811ff4a7d43a0e0c
      */
 
-    //@Pattern(regexp = "^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})-?(\\d{4}))$")
+//    Obrigatorio
+    @Pattern(message = "Digite um número de telefone fixo ou celular válido",regexp = "^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})-?(\\d{4}))$")
     private String telefone1;
 
-    //@Pattern(regexp = "^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})-?(\\d{4}))$")
+//    Opcional
+    @Pattern(message = "Digite um número de telefone fixo ou celular válido", regexp = "^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})-?(\\d{4}))?$")
     private String telefone2;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, @Email String email) {
+    public Pessoa(String nome, String email) {
         this.nome = nome;
         this.email = email;
     }
