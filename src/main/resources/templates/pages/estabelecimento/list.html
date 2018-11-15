@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Estabelecimentos
                         <span class="float-right">
-                            <a class="btn btn-outline-primary" th:href="@{/admin/entities/new}">
+                            <a class="btn btn-outline-primary" th:href="@{/admin/estabelecimentos/new}">
                                 <span class="d-none d-md-block">Novo Estabelecimento</span><i
                                     class="fa fa-plus d-lg-none d-xl-none"></i>
                             </a>
@@ -58,10 +58,10 @@
                                         <td th:text="${estabelecimento.cnpj}">CNPJ</td>
                                         <td>
                                     <span class="float-right text-nowrap">
-                                        <a th:href="@{/admin/entities/{id}/edit(id=${estabelecimento.id})}"
+                                        <a th:href="@{/admin/estabelecimentos/{id}/edit(id=${estabelecimento.id})}"
                                            class="btn btn-sm btn-outline-info">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
-                                        <a th:href="@{/admin/entities/{id}/delete(id=${estabelecimento.id})}"
+                                        <a th:href="@{/admin/estabelecimentos/{id}/delete(id=${estabelecimento.id})}"
                                            class="btn btn-sm btn-outline-danger">
                                             <i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>
                                     </span>
