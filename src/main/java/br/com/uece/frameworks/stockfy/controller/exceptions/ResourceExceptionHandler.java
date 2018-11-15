@@ -27,7 +27,7 @@ public class ResourceExceptionHandler {
         logger.error("Exception during execution application", e);
         String errorMessage = (e != null ? e.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
-        return new ModelAndView("/404", "Error404", model);
+        return new ModelAndView("/error/404", "Error404", model);
     }
 
     @ExceptionHandler(DataIntegrityException.class)
@@ -35,7 +35,7 @@ public class ResourceExceptionHandler {
         logger.error("Exception during execution application", e);
         String errorMessage = (e != null ? e.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
-        return new ModelAndView("/400", "Error400", model);
+        return new ModelAndView("/error/400", "Error400", model);
     }
 
     @ExceptionHandler(Throwable.class)
@@ -44,6 +44,6 @@ public class ResourceExceptionHandler {
         logger.error("Exception during execution application", throwable);
         String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
-        return new ModelAndView("/500", "Error500", model);
+        return new ModelAndView("/error/500", "Error500", model);
     }
 }
