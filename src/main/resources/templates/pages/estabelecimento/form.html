@@ -33,16 +33,16 @@
                         <strong>Basic Form</strong> Estabelecimentos</div>
                     <div class="card-body">
                         <form class="form-group form-horizontal input_mask" th:object="${entity}" method="post">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12 px-0">
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 px-0">
                                         <div class="col-md-2 col-form-label">Nome</div>
                                         <div class="col-md-10">
                                             <input class="form-control" type="text" placeholder="Nome" th:field="*{nome}" />
                                             <p class="text-danger mb-2" th:errors="*{nome}"></p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 px-0">
                                         <div class="col-md-2 col-form-label">CNPJ</div>
                                         <div class="col-md-10">
                                             <input class="form-control" type="text" th:field="*{cnpj}" />
