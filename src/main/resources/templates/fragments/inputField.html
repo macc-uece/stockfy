@@ -28,20 +28,20 @@
 
                 <!--Validation error-->
                 <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
-            </div>
         </div>
     </th:block>
-    <th:block th:fragment="inputLabelTop (label, name, placeholder, type)">
-        <div class=" col-md-6 form-group">
-            <label th:text="${label}"></label>
-            <input class="form-control" type="text"
-                   th:field="*{__${name}__}"
-                   th:type="${type}"
-                   th:placeholder="${placeholder}" />
-            <!--Validation error-->
-            <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
-        </div>
-    </th:block>
+      <th:block th:fragment="inputLabelTop (label, name, placeholder, type)">
+          <div class=" col-md-6 form-group">
+              <label th:text="${label}"></label>
+              <input class="form-control" type="text"
+                                         th:field="*{__${name}__}"
+                                         th:type="${type}"
+                                         th:placeholder="${placeholder}" />
+              <!--Validation error-->
+              <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
+</div>
+</th:block>
+
 </form>
 </body>
 </html>
