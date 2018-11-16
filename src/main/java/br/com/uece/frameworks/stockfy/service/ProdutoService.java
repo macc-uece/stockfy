@@ -1,6 +1,7 @@
 package br.com.uece.frameworks.stockfy.service;
 
 import br.com.uece.frameworks.stockfy.model.Produto;
+import br.com.uece.frameworks.stockfy.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,4 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProdutoService extends GenericService<Produto>{
+
+    public Produto findByFetchSubProduto(Long id){
+        ProdutoRepository produtoRepository = (ProdutoRepository) repository;
+        return produtoRepository.findProdutoFetchSubProduto(id);
+    }
 }

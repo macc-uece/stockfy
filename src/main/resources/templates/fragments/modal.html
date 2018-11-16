@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div th:fragment="modalSubProduto">
+    <div class="modal fade" id="modalSubProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLongTitle">Sub Produto</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="cad_subProduto" data-parsley-validate="" th:action="@{/admin/produtos/subProduto/save}" th:object="${subProduto}" method="post" class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="number" hidden="hidden" id="idProduto" name="idProduto" th:value="${idProduto}"/>
+                                <input type="number" hidden="hidden" th:field="*{id}"/>
+                                <div class="row form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label>Código de Barras:</label>
+                                        <input type="number" th:field="*{codBarras}" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label>Cor:</label>
+                                        <input type="text" th:field="*{cor}" class="form-control" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label>Tamanho:</label>
+                                        <input type="text" th:field="*{tamanho}" class="form-control" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            $("#file").on("change", function loadImg(e) {
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    $('.uploader img').attr('src',event.target.result);
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

@@ -5,6 +5,102 @@
       layout:decorator="layout">
 <head></head>
 <body>
+<div layout:fragment="content">
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/admin/produtos}">Produtos</a>
+            </li>
+            <li class="breadcrumb-item active">Informações</li>
 
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="#">
+                        <i class="icon-speech"></i>
+                    </a>
+                    <a class="btn" th:href="@{/home}">
+                        <i class="icon-graph"></i> &nbsp;Painel de Controle</a>
+                    <a class="btn" href="#">
+                        <i class="icon-settings"></i> &nbsp;Configurações</a>
+                </div>
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Basic Form</strong> Produto
+                    </div>
+                    <div class="card-body">
+                        <form th:object="${entity}">
+                            <form class="form-group form-horizontal" th:object="${entity}" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                        <label>Imagem do Produto:</label>
+                                        <div class="uploader" id="uploader" onclick="$('#file').click()">
+                                            <img th:src="${entity.imagem} != null ? @{|/api/imagem/${entity.imagem.id}|}"/>
+                                        </div>
+                                        <input type="file" id="file" name="file"/>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-6">
+                                        <div class="row form-group">
+                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Referência', 'referencia', 'Digite uma referência', 'number')}" />
+                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Descrição', 'descricao', 'Digite a descrição', 'text')}" />
+                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Preço', 'preco', 'R$', 'number')}" />
+                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Estoque mínimo', 'estoqueMinimo', 'Digite uma quantidade', 'number')}" />
+                                            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                                <label>Categoria:</label>
+                                                <select th:field="*{categoria}" class="form-control">
+                                                    <option th:value="0">Selecione</option>
+                                                    <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nome}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                                <label>Fornecedor:</label>
+                                                <select th:field="*{fornecedor}" class="form-control">
+                                                    <option th:value="0">Selecione</option>
+                                                    <option th:each="fornecedor : ${fornecedores}" th:value="${fornecedor.id}" th:text="${fornecedor.nome}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <h5>Sub Produtos</h5>
+                                        <button class="btn btn-outline-info">Add Sub produto</button>
+                                        <div th:if="${#lists.isEmpty(entity.subProdutos)}">
+                                            <p>Nenhum registro encontrado.</p>
+                                            <hr>
+                                        </div>
+                                        <div th:if="${!#lists.isEmpty(entity.subProdutos)}">
+                                            <div class="table-responsive">
+                                                <table class="table table-responsive-sm table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Cód. Barras</th>
+                                                        <th>Descrição</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="sub : ${entity.subProdutos}">
+                                                        <td th:text="${sub.codBarras}"></td>
+                                                        <td th:text="'Cor '+${sub.cor}+ '- Tamanho '+${sub.tamanho}"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <a th:href="@{/admin/produtos/{id}/edit(id=${entity.id})}" class="btn btn-primary">Editar
+                                Produto</a>
+                            <a th:href="@{/admin/produtos}" class="btn btn-primary">Listar Todos</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>

@@ -46,7 +46,7 @@ public class Produto extends BaseEntity<Long> {
     private Imagem imagem;
 
     @Cascade(CascadeType.ALL)
-    @OneToMany(mappedBy = "produto", orphanRemoval = true)
+    @OneToMany(mappedBy = "produto")
     private List<SubProduto> subProdutos;
 
     public Produto() {

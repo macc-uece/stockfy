@@ -94,9 +94,10 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
      * @return a ModelMap with the model attributes for the view
      */
     @GetMapping("/{entityId}")
-    public ModelAndView show(@PathVariable("entityId") Long entityId) {
+    public ModelAndView show(@PathVariable("entityId") Long entityId, ModelMap modelMap) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName(VIEWS_BASE_PATH + "/details");
+        mav.addAllObjects(modelMap);
         mav.addObject("entity", this.service.findById(entityId));
         return mav;
     }
