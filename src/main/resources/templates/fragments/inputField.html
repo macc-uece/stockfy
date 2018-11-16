@@ -8,14 +8,26 @@
     <th:block th:fragment="input (label, name, placeholder, type)">
         <div class="form-horizontal row py-2">
             <label class="col-md-2 col-form-label" th:text="${label}">Label</label>
-            <div class="col-md-10">
-                <input class="form-control" type="text"
-                       th:field="*{__${name}__}"
-                       th:type="${type}"
-                       th:placeholder="${placeholder}">
+            <div class="col-md-10"
+                 th:switch="__${type}__">
+                    <!--<input th:case="date">-->
+                    <div th:case="date" class="input-group mb-4">
+                        <input class="form-control" type="text"
+                               th:placeholder="${placeholder}"
+                               th:field="*{__${name}__}"
+                               readonly id="datepicker">
+                        <div class="input-group-append">
+                            <span class="fa fa-calendar input-group-text end_date_calendar" aria-hidden="true "></span>
+                        </div>
+                    </div>
+                    <input th:case="*" class="form-control" type="text"
+                           th:field="*{__${name}__}"
+                           th:type="${type}"
+                           th:placeholder="${placeholder}">
+                </div>
+
                 <!--Validation error-->
                 <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
-            </div>
         </div>
     </th:block>
 </form>

@@ -17,7 +17,7 @@ import java.util.Calendar;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class Gasto extends BaseEntity<Long> {
+public class Despesa extends BaseEntity<Long> {
 
     private static final long serialVersionUID = 8619128003585177006L;
 
@@ -28,9 +28,9 @@ public class Gasto extends BaseEntity<Long> {
     private Double valor;
 
     @Column
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @DateTimeFormat(pattern = "dd/MM/yyyy") // lembrar de re-adicionar os horários
     private Calendar data;
 
-    public Gasto() {
+    public Despesa() {
     }
 }
