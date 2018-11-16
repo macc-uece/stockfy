@@ -202,7 +202,7 @@
             <plugin>
                 <groupId>org.ec4j.maven</groupId>
                 <artifactId>editorconfig-maven-plugin</artifactId>
-                <!--<version><version>-->
+                <version>0.0.8</version>
                 <executions>
                     <execution>
                         <id>check</id>
