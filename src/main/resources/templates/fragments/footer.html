@@ -18,9 +18,9 @@
     </div>
 
     <div th:fragment="footer-load">
-        <script th:src="@{/webjars/jquery/jquery.min.js}" type="text/javascript"></script>
-        <script th:src="@{/webjars/popper.js}" type="text/javascript"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+        <!--<script th:src="@{/webjars/jquery/jquery.min.js}" type="text/javascript"></script>-->
+        <!--<script th:src="@{/webjars/popper.js}" type="text/javascript"></script>-->
+        <!--<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>-->
         <script th:src="@{/js/charts.min.js}" type="text/javascript"></script>
         <script th:src="@{/js/colors.js}" type="text/javascript"></script>
         <script th:src="@{/js/popovers.js}" type="text/javascript"></script>
@@ -33,6 +33,12 @@
         <script th:src="@{/js/jquery.inputmask.bundle.min.js}"></script>
         <script th:src="@{/js/endereco.js}"></script>
         <script th:src="@{/js/image-upload.js}"></script>
+        <script>
+            $("#datepicker").datepicker({
+                language: 'pt-BR'
+
+            });
+        </script>
     </div>
 </body>
 </html>
