@@ -7,10 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -46,7 +44,7 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     }
 
     @PostMapping(value = "/new")
-    public String processCreationForm(@ModelAttribute("entity") @Valid Entity entity, BindingResult result, ModelMap model) {
+    public String processCreationForm(@ModelAttribute("entity") @Valid Entity entity, BindingResult result, ModelMap model, @RequestParam(required = false) MultipartFile file) {
         LOGGER.debug("Received request to create the {}", entity);
         if (result.hasErrors()){
             LOGGER.debug("Validation errors occurred in the process to create the entity {}", result.getAllErrors());
@@ -69,7 +67,7 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     }
 
     @PostMapping("/{entityId}/edit")
-    public String processUpdateForm(@ModelAttribute @Valid Entity entity, BindingResult result, @PathVariable("entityId") Long entityId, ModelMap model) {
+    public String processUpdateForm(@ModelAttribute @Valid Entity entity, BindingResult result, @PathVariable("entityId") Long entityId, ModelMap model, @RequestParam(required = false) MultipartFile file) {
         LOGGER.debug("Received request to update the {}", entity);
         if (result.hasErrors()) {
             LOGGER.debug("Validation errors occurred in the process of update the entity {}", result.getAllErrors());

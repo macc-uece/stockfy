@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+<head></head>
+<body>
+<div layout:fragment="content">
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Produtos</li>
+
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="#">
+                        <i class="icon-speech"></i>
+                    </a>
+                    <a class="btn" th:href="@{/home}">
+                        <i class="icon-graph"></i> &nbsp;Painel de Controle</a>
+                    <a class="btn" href="#">
+                        <i class="icon-settings"></i> &nbsp;Configurações</a>
+                </div>
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> Produtos
+                        <span class="float-right">
+                            <a class="btn btn-outline-primary" th:href="@{/admin/produtos/new}">
+                                <span class="d-none d-md-block">Novo Produto</span><i
+                                    class="fa fa-plus d-lg-none d-xl-none"></i>
+                            </a>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${#lists.isEmpty(entities)}">
+                            <p>Nenhum registro encontrado.</p>
+                            <hr>
+                        </div>
+                        <div th:if="${!#lists.isEmpty(entities)}">
+                            <div class="table-responsive">
+                                <table class="table table-responsive-sm table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Referência</th>
+                                        <th>Descrição</th>
+                                        <th>Categoria</th>
+                                        <th>Fornecedor</th>
+                                        <th>Preço</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="produto : ${entities}">
+                                        <td th:text="${produto.referencia}"></td>
+                                        <td th:text="${produto.descricao}"></td>
+                                        <td th:text="${produto.categoria.nome}"></td>
+                                        <td th:text="${produto.fornecedor.nome}"></td>
+                                        <td th:text="${produto.preco}"></td>
+                                        <td>
+                                    <span class="float-right text-nowrap">
+                                        <a th:href="@{/admin/produtos/{id}/edit(id=${produto.id})}"
+                                           class="btn btn-sm btn-outline-info">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+                                        <a th:href="@{/admin/produtos/{id}/delete(id=${produto.id})}"
+                                           class="btn btn-sm btn-outline-danger">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>
+                                    </span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Anterior</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Próximo</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

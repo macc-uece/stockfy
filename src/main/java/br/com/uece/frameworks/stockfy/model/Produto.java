@@ -8,6 +8,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Create by Bruno Barbosa - 13/10/2018
@@ -30,25 +31,23 @@ public class Produto extends BaseEntity<Long> {
     private Double preco;
 
     @Column
-    private String tamanho;
-
-    @Column
-    private String cor;
-
-    @Column
     private Integer estoqueMinimo;
 
     @ManyToOne
     @Cascade(CascadeType.SAVE_UPDATE)
     private Categoria categoria;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @Cascade(CascadeType.SAVE_UPDATE)
     private Fornecedor fornecedor;
 
     @OneToOne
     @Cascade(CascadeType.ALL)
     private Imagem imagem;
+
+    @Cascade(CascadeType.ALL)
+    @OneToMany(mappedBy = "produto", orphanRemoval = true)
+    private List<SubProduto> subProdutos;
 
     public Produto() {
     }

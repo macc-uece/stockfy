@@ -33,10 +33,6 @@ public class Imagem extends BaseEntity<Long> {
     @Column
     private String extensao;
 
-    @Column
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Calendar dataCriacao;
-
     public Imagem() {
     }
 }
