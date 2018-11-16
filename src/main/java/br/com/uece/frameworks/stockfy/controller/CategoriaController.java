@@ -82,7 +82,7 @@ public class CategoriaController {
         this.categoriaService.deleteById(categoriaId);
         return "redirect:/admin/categorias";
     }
-    
+
     /**
      * Custom handler for displaying an category.
      *

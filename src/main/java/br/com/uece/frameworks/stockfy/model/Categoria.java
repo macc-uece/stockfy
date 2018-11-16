@@ -27,5 +27,5 @@ public class Categoria extends BaseEntity<Long>{
     public Categoria(String nome) {
         this.nome = nome;
     }
-    
+
 }
