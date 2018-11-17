@@ -35,9 +35,9 @@
                     <div class="card-body">
                         <form th:object="${entity}">
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input th:replace="~{fragments/inputField :: input ('Descrição', 'descricao', 'Descrição', 'text')}" />
-                                <input th:replace="~{fragments/inputField :: input ('Valor', 'valor', 'Valor', 'number')}" />
-                                <input th:replace="~{fragments/inputField :: input ('Data', 'data', 'Data', 'date')}" />
+                               <input th:replace="~{fragments/inputField :: simple ('Descrição', 'descricao', 'Descrição', 'text')}" />
+                               <input th:replace="~{fragments/inputField :: simple ('Valor', 'valor', 'Valor', 'number')}" />
+                               <input th:replace="~{fragments/inputField :: simple ('Data', 'data', 'Data', 'date')}" />
                             </div>
                             <a th:href="@{/admin/despesas/{id}/edit(id=${entity.id})}" class="btn btn-primary">Editar
                                 Despesa</a>

@@ -36,9 +36,9 @@
                         <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Fornecedor"*/-->
                         <form class="form-horizontal" th:object="${entity}" method="post">
 
-                            <input th:replace="~{fragments/inputField :: input ('Descrição', 'descricao', 'Descrição', 'text')}" />
-                            <input th:replace="~{fragments/inputField :: input ('Valor', 'valor', 'Valor', 'number')}" />
-                            <input th:replace="~{fragments/inputField :: input ('Data', 'data', 'Data', 'date')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('Descrição', 'descricao', 'Descrição', 'text')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('Valor', 'valor', 'Valor', 'number')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('Data', 'data', 'Data', 'date')}" />
                             <!--<div class="end_date input-group mb-4">-->
                                 <!--<input class="form-control" type="text" placeholder="" readonly id="datepicker">-->
                                 <!--<div class="input-group-append">-->

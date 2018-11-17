@@ -45,10 +45,10 @@
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-6">
                                         <div class="row form-group">
-                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Referência', 'referencia', 'Digite uma referência', 'number')}" />
-                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Descrição', 'descricao', 'Digite a descrição', 'text')}" />
-                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Preço', 'preco', 'R$', 'number')}" />
-                                            <input th:replace="~{fragments/inputField :: inputLabelTop ('Estoque mínimo', 'estoqueMinimo', 'Digite uma quantidade', 'number')}" />
+                                            <input th:replace="~{fragments/inputField :: labelTop ('Referência', 'referencia', 'Digite uma referência', 'number')}" />
+                                            <input th:replace="~{fragments/inputField :: labelTop ('Descrição', 'descricao', 'Digite a descrição', 'text')}" />
+                                            <input th:replace="~{fragments/inputField :: labelTop ('Preço', 'preco', 'R$', 'number')}" />
+                                            <input th:replace="~{fragments/inputField :: labelTop ('Estoque mínimo', 'estoqueMinimo', 'Digite uma quantidade', 'number')}" />
                                             <div class="col-md-4 col-sm-4 col-xs-12 form-group">
                                                 <label>Categoria:</label>
                                                 <select th:field="*{categoria}" class="form-control">

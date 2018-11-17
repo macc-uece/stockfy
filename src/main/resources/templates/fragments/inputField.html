@@ -5,42 +5,47 @@
 <!--@link https://github.com/spring-projects/spring-petclinic/blob/master/src/main/resources/templates/fragments/inputField.html-->
 <body>
 <form>
-    <th:block th:fragment="input (label, name, placeholder, type)">
+    <th:block th:fragment="simple (label, name, placeholder, type)">
+        <!--th:fragment="input (label,name, placeholder, type)"-->
         <div class="form-horizontal row py-2">
             <label class="col-md-2 col-form-label" th:text="${label}">Label</label>
             <div class="col-md-10"
                  th:switch="__${type}__">
+                <div th:case="date" class="input-group mb-4">
                     <!--<input th:case="date">-->
-                    <div th:case="date" class="input-group mb-4">
-                        <input class="form-control" type="text"
-                               th:placeholder="${placeholder}"
-                               th:field="*{__${name}__}"
-                               readonly id="datepicker">
-                        <div class="input-group-append">
-                            <span class="fa fa-calendar input-group-text end_date_calendar" aria-hidden="true "></span>
-                        </div>
+                    <input class="form-control" type="text"
+                           th:placeholder="${placeholder}"
+                           th:field="*{__${name}__}"
+                           readonly id="datepicker"/>
+                    <div class="input-group-append">
+                        <span class="fa fa-calendar input-group-text end_date_calendar" aria-hidden="true "></span>
                     </div>
-                    <input th:case="*" class="form-control" type="text"
+                </div>
+                <div th:case="*">
+                    <!--<input th:case="*">-->
+                    <input class="form-control" type="text"
                            th:field="*{__${name}__}"
                            th:type="${type}"
-                           th:placeholder="${placeholder}">
+                           th:placeholder="${placeholder}"/>
                 </div>
+            </div>
 
-                <!--Validation error-->
-                <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
+            <!--Validation error th:fragment="input"-->
+            <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
         </div>
     </th:block>
-      <th:block th:fragment="inputLabelTop (label, name, placeholder, type)">
-          <div class=" col-md-6 form-group">
-              <label th:text="${label}"></label>
-              <input class="form-control" type="text"
-                                         th:field="*{__${name}__}"
-                                         th:type="${type}"
-                                         th:placeholder="${placeholder}" />
-              <!--Validation error-->
-              <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
-</div>
-</th:block>
+    <th:block th:fragment="labelTop (label, name, placeholder, type)">
+        <!--th:fragment="inputLabelTop (label, name, placeholder, type)"-->
+        <div class=" col-md-6 form-group">
+            <label th:text="${label}"></label>
+            <input class="form-control" type="text"
+                   th:field="*{__${name}__}"
+                   th:type="${type}"
+                   th:placeholder="${placeholder}"/>
+            <!--Validation error th:fragment="inputLabelTop"-->
+            <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
+        </div>
+    </th:block>
 
 </form>
 </body>

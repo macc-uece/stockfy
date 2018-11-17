@@ -36,11 +36,11 @@
                         <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Fornecedor"*/-->
                         <form class="form-horizontal" th:object="${entity}" method="post">
 
-                            <input th:replace="~{fragments/inputField :: input ('Nome', 'nome', 'Digite um nome para o fornecedor', 'text')}" />
-                            <input th:replace="~{fragments/inputField :: input ('CNPJ', 'cnpj', 'Digite um CNPJ para o fornecedor', 'text')}" />
-                            <input th:replace="~{fragments/inputField :: input ('E-mail', 'email', 'Digite um e-mail para o fornecedor', 'email')}" />
-                            <input th:replace="~{fragments/inputField :: input ('Telefone principal', 'telefone1', 'Digite um telefone para o fornecedor', 'tel')}" />
-                            <input th:replace="~{fragments/inputField :: input ('Telefone secundário', 'telefone2', 'Digite um telefone para o fornecedor', 'tel')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('Nome', 'nome', 'Digite um nome para o fornecedor', 'text')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('CNPJ', 'cnpj', 'Digite um CNPJ para o fornecedor', 'text')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('E-mail', 'email', 'Digite um e-mail para o fornecedor', 'email')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('Telefone principal', 'telefone1', 'Digite um telefone para o fornecedor', 'tel')}" />
+                           <input th:replace="~{fragments/inputField :: simple ('Telefone secundário', 'telefone2', 'Digite um telefone para o fornecedor', 'tel')}" />
 
                             <div class="card-footer">
                                 <button class="btn btn-sm btn-primary" type="submit">
