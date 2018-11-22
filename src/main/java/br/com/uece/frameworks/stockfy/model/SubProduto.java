@@ -33,4 +33,12 @@ public class SubProduto extends BaseEntity<Long> {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
+
+    public String getDescricaoCompleta() {
+        return produto.getDescricao() + " - " + getDescricaoSubProduto();
+    }
+
+    public String getDescricaoSubProduto() {
+        return "Cor " + getCor() + " / Tamanho " + getTamanho();
+    }
 }

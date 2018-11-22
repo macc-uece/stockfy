@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DespesaController extends AbstractController<Despesa> {
 
     private static final String VIEWS_BASE_PATH = "pages/despesa";
-    private static final String ESTABELECIMENTO_REQUEST_URL = "/admin/despesas";
+    private static final String DESPESA_REQUEST_URL = "/admin/despesas";
 
     @Autowired
     public DespesaController(GenericService<Despesa> service) {
-        super(service, VIEWS_BASE_PATH, ESTABELECIMENTO_REQUEST_URL);
+        super(service, VIEWS_BASE_PATH, DESPESA_REQUEST_URL);
     }
 
     @Override
