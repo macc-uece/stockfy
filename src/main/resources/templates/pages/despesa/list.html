@@ -30,7 +30,7 @@
                         <i class="fa fa-align-justify"></i> Despesas
                         <span class="float-right">
                             <a class="btn btn-outline-primary" th:href="@{/admin/despesas/new}">
-                                <span class="d-none d-md-block">Novo Estabelecimento</span><i
+                                <span class="d-none d-md-block">Nova Despesa</span><i
                                     class="fa fa-plus d-lg-none d-xl-none"></i>
                             </a>
                         </span>
@@ -57,7 +57,7 @@
                                         <td th:text="${despesa.id}">Id</td>
                                         <td th:text="${despesa.descricao}"></td>
                                         <td th:text="${despesa.valor}"></td>
-                                        <td th:text="${#dates.format(despesa.data, 'dd/MM/yyyy HH:mm')}"></td>
+                                        <td th:text="${#dates.format(despesa.data, 'dd/MM/yyyy')}"></td>
                                         <td>
                                             <span class="float-right text-nowrap">
                                                 <a th:href="@{/admin/despesas/{id}/edit(id=${despesa.id})}"
