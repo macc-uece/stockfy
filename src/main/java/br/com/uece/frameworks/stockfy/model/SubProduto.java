@@ -35,7 +35,7 @@ public class SubProduto extends BaseEntity<Long> {
     private Produto produto;
 
     public String getDescricaoCompleta() {
-        return produto.getDescricao() + " - " + getDescricaoSubProduto();
+        return getProduto().getReferencia() + " - " + getProduto().getDescricao() + " - " + getDescricaoSubProduto();
     }
 
     public String getDescricaoSubProduto() {
