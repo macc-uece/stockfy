@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+<head>
+</head>
+<body>
+<div layout:fragment="content">
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/admin/usuarios}">Usuários</a>
+            </li>
+            <li class="breadcrumb-item active">Formulário</li>
+
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="#">
+                        <i class="icon-speech"></i>
+                    </a>
+                    <a class="btn" th:href="@{/home}">
+                        <i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    <a class="btn" href="#">
+                        <i class="icon-settings"></i> &nbsp;Settings</a>
+                </div>
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Basic Form</strong> Usuários
+                    </div>
+                    <div class="card-body">
+                        <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Usuario"*/-->
+                        <form class="form-horizontal" th:object="${entity}" method="post">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-6">
+                                    <label>Imagem do Produto:</label>
+                                    <div class="uploader" id="uploader" onclick="$('#file').click()">
+                                        <img th:src="${entity.imagem} != null ? @{|/api/imagem/${entity.imagem.id}|}"/>
+                                    </div>
+                                    <input type="file" id="file" name="file"/>
+                                </div>
+                                <div class="col-md-8 col-sm-8 col-xs-6">
+                                    <input type="number" hidden="hidden" th:field="*{id}"/>
+                                    <input th:replace="~{fragments/inputField :: simple ('Login', 'login', 'login', 'text')}"/>
+                                    <input th:replace="~{fragments/inputField :: simple ('Senha', 'senha', 'senha', 'password')}"/>
+                                    <div th:include="pages/funcionario :: funcionario"></div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                                        <label>Permissão:</label>
+                                        <select th:field="*{permissao}" class="form-control">
+                                            <option th:value="0">Selecione</option>
+                                            <option th:each="permissao : ${permissoes}" th:value="${permissao.code}"
+                                                    th:text="${categoria.descricao}"></option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary" type="submit">
+                                    <i class="fa fa-dot-circle-o"></i> Submit
+                                </button>
+                                <button class="btn btn-sm btn-danger" type="reset">
+                                    <i class="fa fa-ban"></i> Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

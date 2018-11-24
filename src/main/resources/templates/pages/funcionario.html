@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+</head>
+<body>
+<div th:fragment="funcionario">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <!--/*@thymesVar id="funcionario" type="br.com.uece.frameworks.stockfy.model.Funcionario"*/-->
+            <input type="number" hidden="hidden" th:field="*{funcionario.id}"/>
+            <input th:replace="~{fragments/inputField :: simple ('Nome', 'funcionario.nome', 'nome', 'text')}" />
+            <input th:replace="~{fragments/inputField :: simple ('CPF', 'funcionario.cpf', 'cpf', 'text')}" />
+            <input th:replace="~{fragments/inputField :: simple ('E-mail', 'funcionario.email', 'e-mail', 'email')}" />
+            <input th:replace="~{fragments/inputField :: simple ('Cargo', 'funcionario.cargo', 'cargo', 'text')}" />
+        </div>
+        <div th:include="pages/endereco :: endereco"></div>
+    </div>
+</div>
+</body>
+</html>
