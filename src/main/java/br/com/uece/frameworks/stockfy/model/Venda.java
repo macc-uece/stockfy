@@ -41,6 +41,5 @@ public class Venda extends BaseEntity<Long> {
     private Calendar dataVenda;
 
     @ManyToOne
-    @Cascade(CascadeType.ALL)
     private Estabelecimento estabelecimento;
 }
