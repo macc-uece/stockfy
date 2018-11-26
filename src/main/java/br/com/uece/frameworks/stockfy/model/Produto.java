@@ -51,4 +51,9 @@ public class Produto extends BaseEntity<Long> {
 
     public Produto() {
     }
+
+    public Produto(Long referencia, Double preco) {
+        this.referencia = referencia;
+        this.preco = preco;
+    }
 }

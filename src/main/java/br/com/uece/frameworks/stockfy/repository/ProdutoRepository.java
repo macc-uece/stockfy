@@ -28,4 +28,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     @Query("Select p From Produto p left join fetch p.subProdutos sp Where p.id = :id")
     Produto findProdutoFetchSubProduto(@Param("id") Long id);
+
+    @Query("select new Produto(p.referencia, p.preco) from Produto p where cast(p.referencia as string) like :referencia")
+    List<Produto> findRefAndPrecoByRefContains(@Param("referencia") String referencia);
 }

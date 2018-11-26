@@ -5,6 +5,117 @@
       layout:decorator="layout">
 <head></head>
 <body>
+<div layout:fragment="content">
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/admin/vendas}">Vendas</a>
+            </li>
+            <li class="breadcrumb-item active">Formulário</li>
 
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="#">
+                        <i class="icon-speech"></i>
+                    </a>
+                    <a class="btn" th:href="@{/home}">
+                        <i class="icon-graph"></i> &nbsp;Painel de Controle</a>
+                    <a class="btn" href="#">
+                        <i class="icon-settings"></i> &nbsp;Configurações</a>
+                </div>
+            </li>
+        </ol>
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Basic Form</strong> Vendas</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="autocomplete">Referência:</label>
+                                <input type="text" id="autocomplete" placeholder="Referência" class="form-control"/>
+                                <!--disparo para busca-->
+                                <input hidden="hidden" class="update-sub-produto form-control" name="refBusca" type="text"/>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="subProduto">Sub Produto:</label>
+                                <select class="form-control" id="subProduto">
+                                    <option value="0">Selecione</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label>Preço:</label>
+                                <input type="number" class="form-control" readonly value="0" min="0" id="precoProduto"/>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="quantidadeProduto">Quantidade:</label>
+                                <input class="form-control" type="number" id="quantidadeProduto" min="1" value="1"/>
+                            </div>
+                            <div class="col-md-3 elem-central" style="margin-top: 2%">
+                                <label></label>
+                                <h1 id="valorTotal">0</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Data da Venda:</label>
+                                <div class="row input-group">
+                                    <input type="text" id="datepicker" class="form-control"/>
+                                    <div class="input-group-append">
+                                        <span class="fa fa-calendar input-group-text end_date_calendar" aria-hidden="true "></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Estabelecimento:</label>
+                                <select class="form-control" id="estabelecimento">
+                                    <option th:value="0">Selecione</option>
+                                    <option th:each="estab : ${estabelecimentos}" th:value="${estab.id}" th:text="${estab.nome}"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 elem-central" style="margin-top: 2%">
+                                <button type="button" class="btn btn-outline-info" id="AddProdutoVenda"><span class="fa fa-plus-circle"></span> Adicionar</button>
+                            </div>
+                            <div class="col-md-3 elem-central">
+                                <label><h3>SubTotal: R$ </h3></label>
+                                <label><h1 id="subTotal">0</h1></label>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-responsive-sm table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Referência</th>
+                                        <th>Sub Produto</th>
+                                        <th>Quantidade</th>
+                                        <th>Data</th>
+                                        <th>Estabelecimento</th>
+                                        <th>Total</th>
+                                        <th style="width: 3%;"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tableVenda">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a th:href="@{/admin/vendas}" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancelar</a>
+                                    <button type="button" id="salvarVendas" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Salvar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>

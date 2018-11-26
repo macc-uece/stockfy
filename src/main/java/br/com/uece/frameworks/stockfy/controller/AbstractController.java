@@ -103,4 +103,8 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     }
 
     protected abstract Entity getEntity();
+
+    protected GenericService<Entity> getService() {
+        return service;
+    }
 }

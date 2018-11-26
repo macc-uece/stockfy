@@ -31,6 +31,10 @@ public abstract class GenericService<Entity extends BaseEntity<Long>> {
         return repository.save(entity);
     }
 
+    public List<Entity> saveAll(List<Entity> entities) {
+        return repository.saveAll(entities);
+    }
+
     public void deleteById(Long id) {
         findById(id);
         try {

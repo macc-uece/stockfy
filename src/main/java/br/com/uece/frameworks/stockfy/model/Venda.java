@@ -37,7 +37,7 @@ public class Venda extends BaseEntity<Long> {
     private BigDecimal totalVenda;
 
     @Column
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Calendar dataVenda;
 
     @ManyToOne
