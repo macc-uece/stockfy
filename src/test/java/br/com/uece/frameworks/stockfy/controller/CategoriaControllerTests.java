@@ -8,9 +8,19 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -30,7 +40,6 @@ public class CategoriaControllerTests {
     private MockMvc mockMvc;
 
     // MockHttpSession session = makeAuthSession("admin", "ROLE_ADMIN"); //Precisa injetar essa sessao nas requisicoes do mock
-
 
     @MockBean
     private CategoriaService categoriaService;
@@ -65,71 +74,69 @@ public class CategoriaControllerTests {
     public void testInitCreationForm() throws Exception {
         mockMvc.perform(get(CATEGORIA_URL + "/new"))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("entity"))
-                .andExpect(view().name("categoria/form"));
+                .andExpect(model().attributeExists("categoria"))
+                .andExpect(view().name("pages/categoria/form"));
     }
 
     //@Test
     @WithMockUser(username = "admin")
     public void testProcessCreationFormSuccess() throws Exception {
         mockMvc.perform(post(CATEGORIA_URL + "/new")
-                .param("nome", "Cuidados com a pele")
-        )
+                .param("nome", "Cuidados com a pele"))
                 .andExpect(status().is3xxRedirection());
     }
 
-    // @Test
+    //@Test
     @WithMockUser(username = "admin")
     public void testProcessCreationFormHasErrors() throws Exception {
         mockMvc.perform(post(CATEGORIA_URL + "/new")
-                .param("nome", "")
-        )
+                .param("nome", ""))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeHasErrors("entity"))
-                .andExpect(model().attributeHasFieldErrors("entity", "nome"))
-                .andExpect(view().name(CATEGORIA_URL + "/form"));
+                .andExpect(model().attributeHasErrors("categoria"))
+                .andExpect(model().attributeHasFieldErrors("categoria", "nome"))
+                .andExpect(view().name("pages/categoria/form"));
     }
 
 
-    // @Test
+    @Test
     @WithMockUser(username = "admin")
     public void testInitUpdateForm() throws Exception {
         mockMvc.perform(get(CATEGORIA_URL + "/{categoriaId}/edit", TEST_CATEGORIA_ID))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("entity"))
-                .andExpect(model().attribute("entity", hasProperty("nome", is("Perfumaria"))))
-                .andExpect(view().name(CATEGORIA_URL + "/form"));
+                .andExpect(model().attributeExists("categoria"))
+                .andExpect(model().attribute("categoria", hasProperty("nome", is("Perfumaria"))))
+                .andExpect(view().name("pages/categoria/form"));
     }
 
-    // @Test
+    //@Test
     @WithMockUser(username = "admin")
     public void testProcessUpdateFormSuccess() throws Exception {
-        mockMvc.perform(post(CATEGORIA_URL + "/{categoriaId}/edit", TEST_CATEGORIA_ID)
+        mockMvc.perform(post(CATEGORIA_URL + "/"+TEST_CATEGORIA_ID+"/edit")
                 .param("nome", "Escritório")
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:" + CATEGORIA_URL + "/{categoriaId}"));
     }
 
-    // @Test
+    //@Test
     @WithMockUser(username = "admin")
     public void testProcessUpdateFormHasErrors() throws Exception {
-        mockMvc.perform(post(CATEGORIA_URL + "{/categoriaId}/edit", TEST_CATEGORIA_ID)
+        mockMvc.perform(post(CATEGORIA_URL + "/{categoriaId}/edit", TEST_CATEGORIA_ID)
                 .param("nome", "Escritório")
         )
                 .andExpect(status().isOk())
-                .andExpect(model().attributeHasErrors("entity"))
-                .andExpect(model().attributeHasFieldErrors("entity", "nome"))
-                .andExpect(view().name(CATEGORIA_URL + "/form"));
+                .andExpect(model().attributeHasErrors("categoria"))
+                .andExpect(model().attributeHasFieldErrors("categoria", "nome"))
+                .andExpect(view().name("pages/categoria/form"));
     }
 
-    // @Test
+    @Test
     @WithMockUser(username = "admin")
     public void testShow() throws Exception {
         mockMvc.perform(get(CATEGORIA_URL + "/{categoriaId}", TEST_CATEGORIA_ID))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("entity", hasProperty("nome", is("Escritório"))))
-                .andExpect(view().name(CATEGORIA_URL + "/form"));
+                .andExpect(model().attribute("categoria", hasProperty("nome", is("Perfumaria"))))
+                .andExpect(view().name("pages/categoria/categoriaDetails"));
     }
 
 }
