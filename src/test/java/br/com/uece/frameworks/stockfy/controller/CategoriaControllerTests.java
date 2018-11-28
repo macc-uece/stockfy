@@ -25,6 +25,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -78,18 +79,20 @@ public class CategoriaControllerTests {
                 .andExpect(view().name("pages/categoria/form"));
     }
 
-    //@Test
+    @Test
     @WithMockUser(username = "admin")
     public void testProcessCreationFormSuccess() throws Exception {
         mockMvc.perform(post(CATEGORIA_URL + "/new")
+                .with(csrf())
                 .param("nome", "Cuidados com a pele"))
                 .andExpect(status().is3xxRedirection());
     }
 
-    //@Test
+    @Test
     @WithMockUser(username = "admin")
     public void testProcessCreationFormHasErrors() throws Exception {
         mockMvc.perform(post(CATEGORIA_URL + "/new")
+                .with(csrf())
                 .param("nome", ""))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeHasErrors("categoria"))
@@ -108,21 +111,23 @@ public class CategoriaControllerTests {
                 .andExpect(view().name("pages/categoria/form"));
     }
 
-    //@Test
+    @Test
     @WithMockUser(username = "admin")
     public void testProcessUpdateFormSuccess() throws Exception {
         mockMvc.perform(post(CATEGORIA_URL + "/"+TEST_CATEGORIA_ID+"/edit")
+                .with(csrf())
                 .param("nome", "Escritório")
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:" + CATEGORIA_URL + "/{categoriaId}"));
     }
 
-    //@Test
+    @Test
     @WithMockUser(username = "admin")
     public void testProcessUpdateFormHasErrors() throws Exception {
         mockMvc.perform(post(CATEGORIA_URL + "/{categoriaId}/edit", TEST_CATEGORIA_ID)
-                .param("nome", "Escritório")
+                .with(csrf())
+                .param("nome", "")
         )
                 .andExpect(status().isOk())
                 .andExpect(model().attributeHasErrors("categoria"))
