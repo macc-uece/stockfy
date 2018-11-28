@@ -67,7 +67,7 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     }
 
     @PostMapping("/{entityId}/edit")
-    public String processUpdateForm(@ModelAttribute @Valid Entity entity, BindingResult result, @PathVariable("entityId") Long entityId, ModelMap model, @RequestParam(required = false) MultipartFile file) {
+    public String processUpdateForm(@ModelAttribute("entity") @Valid Entity entity, BindingResult result, @PathVariable("entityId") Long entityId, ModelMap model, @RequestParam(required = false) MultipartFile file) {
         LOGGER.debug("Received request to update the {}", entity);
         if (result.hasErrors()) {
             LOGGER.debug("Validation errors occurred in the process of update the entity {}", result.getAllErrors());
