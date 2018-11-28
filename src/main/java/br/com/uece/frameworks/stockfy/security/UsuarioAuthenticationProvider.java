@@ -27,11 +27,11 @@ public class UsuarioAuthenticationProvider extends AbstractUserDetailsAuthentica
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
-        if(usernamePasswordAuthenticationToken.getCredentials() == null || userDetails.getPassword() == null){
+        if (usernamePasswordAuthenticationToken.getCredentials() == null || userDetails.getPassword() == null) {
             throw new BadCredentialsException("Credenciais não podem ser nulas");
         }
 
-        if(!passwordEncoder.matches((String) usernamePasswordAuthenticationToken.getCredentials(),userDetails.getPassword())){
+        if (!passwordEncoder.matches((String) usernamePasswordAuthenticationToken.getCredentials(), userDetails.getPassword())) {
             throw new BadCredentialsException("Senha Inválida");
         }
     }

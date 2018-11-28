@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/fonts/**"
                 ).permitAll()
                 .antMatchers("/setup").permitAll() // Somente por enquanto para popular o bd com acesso
-                .antMatchers("/403","/500").permitAll()
+                .antMatchers("/403", "/500").permitAll()
                 .antMatchers("/recuperarSenha").permitAll()
                 .antMatchers("/novaSenha").permitAll()
                 .anyRequest().authenticated()
