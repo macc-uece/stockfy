@@ -29,10 +29,9 @@
                            step="0.01"
                            th:placeholder="${placeholder}"/>
                 </div>
+                <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
             </div>
 
-            <!--Validation error th:fragment="input"-->
-            <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
         </div>
     </th:block>
     <th:block th:fragment="labelTop (label, name, placeholder, type)">
