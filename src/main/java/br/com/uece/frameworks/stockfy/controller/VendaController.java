@@ -1,19 +1,16 @@
 package br.com.uece.frameworks.stockfy.controller;
 
 import br.com.uece.frameworks.stockfy.enums.TipoPagamento;
-import br.com.uece.frameworks.stockfy.model.Estabelecimento;
-import br.com.uece.frameworks.stockfy.model.SubProduto;
-import br.com.uece.frameworks.stockfy.model.Venda;
+import br.com.uece.frameworks.stockfy.model.*;
 import br.com.uece.frameworks.stockfy.service.EstabelecimentoService;
 import br.com.uece.frameworks.stockfy.service.GenericService;
+import br.com.uece.frameworks.stockfy.service.ProdutoService;
 import br.com.uece.frameworks.stockfy.service.SubProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -31,15 +28,17 @@ import java.util.Map;
 public class VendaController extends AbstractController<Venda> {
 
     private final EstabelecimentoService estabelecimentoService;
+    private final ProdutoService produtoService;
     private final SubProdutoService subProdutoService;
 
     private static final String VIEWS_BASE_PATH = "pages/venda";
     private static final String VENDA_REQUEST_URL = "/admin/vendas";
 
     @Autowired
-    public VendaController(GenericService<Venda> service, EstabelecimentoService estabelecimentoService, SubProdutoService subProdutoService) {
+    public VendaController(GenericService<Venda> service, EstabelecimentoService estabelecimentoService, ProdutoService produtoService, SubProdutoService subProdutoService) {
         super(service, VIEWS_BASE_PATH, VENDA_REQUEST_URL);
         this.estabelecimentoService = estabelecimentoService;
+        this.produtoService = produtoService;
         this.subProdutoService = subProdutoService;
     }
 
@@ -88,5 +87,18 @@ public class VendaController extends AbstractController<Venda> {
             }
         }
         return "500";
+    }
+
+    @Override
+    public ModelAndView show(@PathVariable("entityId") Long entityId, ModelMap modelMap) {
+        Venda venda = getService().findById(entityId);
+        try {
+            Long ref = Long.parseLong(venda.getDescricaoProduto().split("-")[0].trim());
+            Produto produto = produtoService.findByReferencia(ref);
+            modelMap.put("imagem", produto.getImagem());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return super.show(entityId, modelMap);
     }
 }

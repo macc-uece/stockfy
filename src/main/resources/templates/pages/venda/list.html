@@ -65,8 +65,8 @@
                                         <td th:text="${entity.estabelecimento.nome}"></td>
                                         <td>
                                             <span class="float-right text-nowrap">
-                                                <a th:href="@{/admin/vendas/{id}/edit(id=${entity.id})}" class="btn btn-sm btn-outline-info">
-                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                                <a th:href="@{|/admin/vendas/${entity.id}|}" class="btn btn-sm btn-outline-info">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i> Visualizar</a>
                                                 <a th:href="@{/admin/vendas/{id}/delete(id=${entity.id})}" class="btn btn-sm btn-outline-danger">
                                                     <i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>
                                             </span>

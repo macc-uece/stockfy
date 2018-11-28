@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ProdutoService extends GenericService<Produto>{
+public class ProdutoService extends GenericService<Produto> {
 
-    public Produto findByFetchSubProduto(Long id){
+    public Produto findByFetchSubProduto(Long id) {
         ProdutoRepository produtoRepository = (ProdutoRepository) repository;
         return produtoRepository.findProdutoFetchSubProduto(id);
+    }
+
+    public Produto findByReferencia(Long ref) {
+        return ((ProdutoRepository) repository).findByReferencia(ref);
     }
 }

@@ -37,12 +37,23 @@
     </th:block>
     <th:block th:fragment="labelTop (label, name, placeholder, type)">
         <!--th:fragment="inputLabelTop (label, name, placeholder, type)"-->
-        <div class=" col-md-6 form-group">
+        <div class=" col-md-6 form-group" th:switch="__${type}__">
             <label th:text="${label}"></label>
-            <input class="form-control" type="text"
-                   th:field="*{__${name}__}"
-                   th:type="${type}"
-                   th:placeholder="${placeholder}"/>
+            <div th:case="*">
+                <input class="form-control" type="text"
+                       th:field="*{__${name}__}"
+                       th:type="${type}"
+                       th:placeholder="${placeholder}"/>
+            </div>
+            <div th:case="date">
+                <input class="form-control" type="text"
+                       th:placeholder="${placeholder}"
+                       th:field="*{__${name}__}"
+                       readonly id="datepicker"/>
+                <div class="input-group-append">
+                    <span class="fa fa-calendar input-group-text end_date_calendar" aria-hidden="true "></span>
+                </div>
+            </div>
             <!--Validation error th:fragment="inputLabelTop"-->
             <p class="text-danger mb-2" th:errors="*{__${name}__}">Error</p>
         </div>
