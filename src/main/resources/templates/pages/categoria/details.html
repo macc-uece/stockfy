@@ -34,8 +34,8 @@
                         <strong>Basic Form</strong> Categorias
                     </div>
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-striped" th:object="${categoria}">
-                            <!--/*@thymesVar id="categoria" type="br.com.uece.frameworks.stockfy.model.Categoria"*/-->
+                        <table class="table table-responsive-sm table-striped" th:object="${entity}">
+                            <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Categoria"*/-->
                             <thead>
                             <tr>
                                 <th>Nome</th>
@@ -47,8 +47,8 @@
                             </tr>
                             </tbody>
                         </table>
-                        <!--/*@thymesVar id="categoria" type="br.com.uece.frameworks.stockfy.model.Categoria"*/-->
-                        <a th:href="@{/admin/categorias/{id}/edit(id=${categoria.id})}" class="btn btn-primary">Editar
+                        <!--/*@thymesVar id="entity" type="br.com.uece.frameworks.stockfy.model.Categoria"*/-->
+                        <a th:href="@{/admin/categorias/{id}/edit(id=${entity.id})}" class="btn btn-primary">Editar
                             Categoria</a>
                         <a th:href="@{/admin/categorias}" class="btn btn-primary">Listar Todas</a>
                     </div>
