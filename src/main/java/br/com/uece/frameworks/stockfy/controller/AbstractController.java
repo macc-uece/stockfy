@@ -2,9 +2,13 @@ package br.com.uece.frameworks.stockfy.controller;
 
 import br.com.uece.frameworks.stockfy.service.GenericService;
 import br.com.uece.frameworks.stockfy.util.BaseEntity;
+import br.com.uece.frameworks.stockfy.util.pagination.PaginationValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.Optional;
 
 public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractController.class);
@@ -22,6 +26,9 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     private final String REQUEST_MAPPING_PATH;
 
     @Autowired
+    private PaginationValue paginationValue;
+
+    @Autowired
     public AbstractController(GenericService<Entity> service, String VIEWS_BASE_PATH, String REQUEST_MAPPING_PATH) {
         this.service = service;
         this.VIEWS_BASE_PATH = VIEWS_BASE_PATH;
@@ -29,9 +36,19 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     }
 
     @GetMapping
-    public String listEntities(ModelMap model) {
-        List<Entity> results = this.service.findAll();
+    public String listEntities(ModelMap model,
+                               @RequestParam(value = "pageSize", required = false) Optional<Integer> pageSize,
+                               @RequestParam(value = "page", required = false) Optional<Integer> page) {
+        Page<Entity> results;
+        if (pageSize.isPresent() && page.isPresent()) {
+            results = this.service.findPage(paginationValue.getPositionPagination(pageSize, page, Sort.by("id").descending()));
+        } else {
+            results = this.service.findAll(paginationValue.getPositionPagination(Optional.of(10), Optional.of(1)));
+        }
         model.put("entities", results);
+        model.put("selectedPageSize", paginationValue.getEvalPageSize());
+        model.put("pageSizes", paginationValue.getPAGE_SIZES());
+        model.put("pager", paginationValue.getPagerView(results.getTotalPages(), results.getNumber()));
         return VIEWS_BASE_PATH + "/list";
     }
 
@@ -39,14 +56,13 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     public String initCreationForm(ModelMap modelMap) {
         Entity entity = getEntity();
         modelMap.put("entity", entity);
-//        modelMap.put(entity.getClass().getSimpleName().toLowerCase(), entity);
         return VIEWS_BASE_PATH + "/form";
     }
 
     @PostMapping(value = "/new")
     public String processCreationForm(@ModelAttribute("entity") @Valid Entity entity, BindingResult result, ModelMap model, @RequestParam(required = false) MultipartFile file) {
         LOGGER.debug("Received request to create the {}", entity);
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             LOGGER.debug("Validation errors occurred in the process to create the entity {}", result.getAllErrors());
             model.put("entity", entity);
             return VIEWS_BASE_PATH + "/form";
@@ -81,7 +97,7 @@ public abstract class AbstractController<Entity extends BaseEntity<Long>> {
     }
 
     @GetMapping("/{entityId}/delete")
-    public String delete(@PathVariable("entityId") Long entityId){
+    public String delete(@PathVariable("entityId") Long entityId) {
         LOGGER.debug("Received request to delete a entity by its id: {}", entityId);
         this.service.deleteById(entityId);
         return "redirect:" + REQUEST_MAPPING_PATH;

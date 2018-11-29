@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div class="row" th:fragment="pagination (list, pageSizes, pager, selectedPageSize, src)">
+    <div th:if="${list.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+        <ul class="pagination">
+            <li th:classappend="${list.number == 0} ? disabled" class="page-item">
+                <a class="page-link" th:href="@{${src}+'?pageSize='+${selectedPageSize}+'&amp;page=1'}">&laquo;</a>
+            </li>
+            <li th:classappend="${list.number == 0} ? disabled" class="page-item">
+                <a class="page-link" th:href="@{${src}+'?pageSize='+${selectedPageSize}+'&amp;page='+${list.number}}">&larr;</a>
+            </li>
+            <li th:classappend="${list.number == (page - 1)} ? 'active pointer-disabled'" class="page-item"
+                th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                <a class="page-link" th:href="@{${src}+'?pageSize='+${selectedPageSize}+'&amp;page='+${page}}"
+                   th:text="${page}"></a>
+            </li>
+            <li th:classappend="${list.number + 1 == list.totalPages} ? disabled" class="page-item">
+                <a class="page-link"
+                   th:href="@{${src}+'?pageSize='+${selectedPageSize}+'&amp;page='+${list.number + 2}}">&rarr;</a>
+            </li>
+            <li th:classappend="${list.number + 1 == list.totalPages} ? disabled" class="page-item">
+                <a class="page-link"
+                   th:href="@{${src}+'?pageSize='+${selectedPageSize}+'&amp;page='+${list.totalPages}}">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
