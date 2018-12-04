@@ -1,6 +1,6 @@
 package br.com.uece.frameworks.stockfy.config;
 
-import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,7 +70,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
     @Bean
     @SuppressWarnings("unchecked")
     public Jackson2ObjectMapperBuilder configureObjectMapper() {
-        return new Jackson2ObjectMapperBuilder().modulesToInstall(Hibernate4Module.class);
+        return new Jackson2ObjectMapperBuilder().modulesToInstall(Hibernate5Module.class);
     }
 
     @Bean

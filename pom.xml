@@ -108,7 +108,8 @@
         <!--Hibernate Messege Object-->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-hibernate4</artifactId>
+            <!--<artifactId>jackson-datatype-hibernate4</artifactId>-->
+            <artifactId>jackson-datatype-hibernate5</artifactId>
             <version>${jackson.version}</version>
         </dependency>
 
