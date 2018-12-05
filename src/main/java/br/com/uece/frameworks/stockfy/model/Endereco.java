@@ -4,6 +4,7 @@ import br.com.uece.frameworks.stockfy.util.BaseEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
+@ToString
 public class Endereco extends BaseEntity<Long> {
 
     private static final long serialVersionUID = 5986466479496786155L;
@@ -52,4 +54,5 @@ public class Endereco extends BaseEntity<Long> {
         this.localidade = localidade;
         this.uf = uf;
     }
+
 }

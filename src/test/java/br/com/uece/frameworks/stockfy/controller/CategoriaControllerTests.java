@@ -58,17 +58,10 @@ public class CategoriaControllerTests {
     public void testProtectedView() throws Exception {
         mockMvc.perform(get(CATEGORIA_URL)).andExpect(status().isUnauthorized());
         mockMvc.perform(get(CATEGORIA_URL + "/new")).andExpect(status().isUnauthorized());
-        // mockMvc.perform(post(CATEGORIA_URL + "/new")).andExpect(status().isUnauthorized());
-        // mockMvc.perform(get(CATEGORIA_URL + "/edit")).andExpect(status().isUnauthorized());
+        mockMvc.perform(post(CATEGORIA_URL + "/new")).andExpect(status().isUnauthorized());
+        mockMvc.perform(get(CATEGORIA_URL + "/edit")).andExpect(status().isUnauthorized());
     }
 
-    /*
-     * Os testes abaixo falham devido a ausencia do atributo sessao que possui a autenticacao necessaria para acessar os recursos protegidos
-     * Resultando em TemplateProcessingException, pois o tymeleaf nao consegue acessar o objeto Principal
-     * Lembrar de descomentar @Test nos metodos abaixo após terminar de implementar o metodo @makeAuthSession resolvendo a excecao injetando a sessao nas requisicoes HTTP dos testes abaixo
-     * https://stackoverflow.com/questions/24999469/how-to-unit-test-a-secured-controller-which-uses-thymeleaf-without-getting-temp
-     *
-     */
 
     @Test
     @WithMockUser(username = "admin")

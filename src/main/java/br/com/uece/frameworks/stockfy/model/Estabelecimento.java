@@ -4,6 +4,7 @@ import br.com.uece.frameworks.stockfy.util.BaseEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -21,6 +22,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
+@ToString
 public class Estabelecimento extends BaseEntity<Long> {
 
     private static final long serialVersionUID = 6077435869260773383L;
