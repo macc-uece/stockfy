@@ -4,6 +4,7 @@ import br.com.uece.frameworks.stockfy.util.BaseEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
+@ToString
 public class Pessoa extends BaseEntity<Long> {
 
     private static final long serialVersionUID = -6838989188762945586L;

@@ -3,6 +3,7 @@ package br.com.uece.frameworks.stockfy.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.Basic;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @Setter
 @Getter
 @EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
 public class Fornecedor extends Pessoa {
 
     private static final long serialVersionUID = -1868298993542817252L;
